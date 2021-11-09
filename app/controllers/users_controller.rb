@@ -36,6 +36,8 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
   def destroy
     User.find(params[:id]).destroy
     redirect_to users_url
