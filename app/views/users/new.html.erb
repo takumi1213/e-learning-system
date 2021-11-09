@@ -1,14 +1,5 @@
-<%= provide(:title,"Edit Profile")%>
-<% if flash.any? %>
-  <% flash.each do |type, msg|%>
-     <div class="mt-4 alert alert-<%=type%> alert-dismissable fade show" role="alert">
-            <strong><%=msg%></strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          
-        </div>
-   <% end %>
-<% end %>
-
-<%= render "form", btn_msg: "Sign Up" %>
+<%= provide(:title,"Register Profile")%>
+<div class="col-6 mx-auto">
+    <h1 class="text-center mt-4">Register Profile</h1>
+    <%= render 'form', btn_msg: "Submit"%>
+</div>

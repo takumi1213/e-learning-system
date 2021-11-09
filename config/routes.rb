@@ -9,9 +9,10 @@ Rails.application.routes.draw do
   resources :users
   get '/signup', to: 'users#new' 
 
+  resources :sessions, only: :create
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
-  resources :sessions, only: :create
-  
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
