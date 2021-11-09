@@ -1,0 +1,33 @@
+<% provide(:title,@user.name)%>
+<div class="row pt-5">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                User Infomation
+            </div>
+            
+            <div class="card-body text-center">
+                <%= gravatar_for @user, size:52 %>
+                <h5><%=@user.name %></h5>
+                <p><%= @user.email%></p>
+                <% if @user == current_user %>
+                <div class="card-footer">
+                </div>
+                <% end%>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                Activity Feeds
+            </div>
+            <div class="card-body">
+                
+                
+                <h4 class="text-center"> No posts found</h4>
+                
+            </div>
+        </div>
+    </div>
+</div>
