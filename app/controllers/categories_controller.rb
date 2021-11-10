@@ -20,13 +20,26 @@ class CategoriesController < ApplicationController
     redirect_to categories_path
   end
 
+  def edit
+    @category = Category.find(params[:id])
+  end
 
+  def update
+    @category = Category.find(params[:id])
+    if @category.update(category_params)
+      flash[:success] = "Category updated!!"
+      redirect_to categories_path
+    else
+      render 'edit'
+    end
+  end
 
   def destroy
     Category.find(params[:id]).destroy
     flash[:success] = "Successfully deleted"
     redirect_back(fallback_location: request.referer)
   end
+
   private
   def category_params
     params.require(:category).permit(:title,:description)
