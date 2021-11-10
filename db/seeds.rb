@@ -27,3 +27,11 @@ User.create(name:"Takumi Hamamoto",
       )
   end
 
+  50.times do |n|
+    title = Faker::Games::Pokemon.name
+    description = Faker::Games::Zelda.location #=> "Tarrey Town"
+    Category.create(
+      title: title,
+      description: description,
+      )
+  end
