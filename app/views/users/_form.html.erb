@@ -13,6 +13,7 @@
         <div class="mb-3">
             <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation"%>
         </div>
+        <%= f.hidden_field :admin ,value: false %>
         <%= f.submit btn_msg, class: "btn btn-block btn-success"%>
     </div>
 <% end %>
