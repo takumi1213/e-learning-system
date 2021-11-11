@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  
   get 'sessions/new'
   get 'static_pages/home'
   get 'static_pages/about'
@@ -14,7 +13,11 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new'
   get '/logout', to: 'sessions#destroy'
 
-  resources :categories
+  resources :categories do
+    member do
+      resources :words
+    end
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

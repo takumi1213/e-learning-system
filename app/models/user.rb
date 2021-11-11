@@ -7,4 +7,7 @@ class User < ApplicationRecord
                                     uniqueness: { case_sensitive: true }
   
   validates :password, length: { minimum: 6 }
+
+  has_many :words, dependent: :destroy
+  has_many :choices, dependent: :destroy
 end
