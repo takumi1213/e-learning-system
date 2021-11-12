@@ -8,11 +8,11 @@
                     <%= f.hidden_field :category_id ,value: params[:id] %>
             </div>
             <div class="col-6">
-                <p>Choice</p>
                 <%= f.fields_for :choices do |s| %>
                 <div class="low mb-4">
                     <div class="row">
                         <div class="col-8">
+                            <p>Choice</p>
                             <%= s.text_field :choice, class: "form-control", placeholder: "choice" %>
                         </div>
                         <div class="col-4 form-gorup">

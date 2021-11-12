@@ -1,9 +1,30 @@
-
-    <% @words.each do |word| %>
-        <%= word.name %>
-    <% end %>
-    <% @choices.each do |choices| %>
-        <%= choice.name %>
-        <%= choice.name %>
-        <%= choice.name %>
-    <% end %>
+<%= provide(:title,"Manege Words")%>
+<div class="row">
+    <div class="col-12">
+        <div class="container my-3">
+            <h1 class="texr-center">Manege Words</h1>
+            <%= link_to 'Add Words', new_word_path(category), class:"btn btn-success" %>
+            <%= will_paginate %>
+              <table class="table table-striped table-hover">
+                  <thead class="text-center">
+                      <tr>
+                          <th>Title</th>
+                          <th>Answer</th>
+                          <th colspan="2">Action</th>
+                      </tr>
+                  </thead>
+                    <tbody class="text-center">
+                        <% @words.each do |word| %>
+                            <tr>
+                                <td> <%= word.title %> </td>
+                                <td> <%= "Answer" %> </td>
+                                <td> <%= link_to "Edit", edit_word_path(category)%> </td>
+                                <td> <%= link_to "Delete", word_path(category),method: :delete,data: { confirm: "Are you sure?" }%> </td>
+                            </tr>
+                        <% end %>
+                    </tbody>
+              </table>
+            <%= will_paginate %>
+        </div>
+    </div>
+</div>
