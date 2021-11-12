@@ -5,8 +5,7 @@ class WordsController < ApplicationController
   end
 
   def show
-    @choices = @user.choices
-    @words = @user.words
+    @word = Word.find(params[:id])
   end
 
   def new
@@ -17,10 +16,10 @@ class WordsController < ApplicationController
   def create
     @word = Word.create(word_params)
     if @word.save
-      flash[:success] = "finished"
+      flash[:success] = "Successfully Created !!"
       redirect_to categories_path
     else
-      flash[:danger] = @word.errors.full_messages.to_sentence #this will return the full message for the errors
+      flash[:danger] = @word.errors.full_messages.to_sentence #this will return the full message for the errors "Please input content"
       redirect_back(fallback_location: request.referer)
     end
    end
@@ -32,7 +31,7 @@ class WordsController < ApplicationController
   def update
     @word = Word.find(params[:id])
     if @word.update(word_params)
-      redirect_to word_path(@word), notice: '更新しました'
+      redirect_to word_path(@word), notice: 'Successfully Updated'
     else
       render :edit
     end

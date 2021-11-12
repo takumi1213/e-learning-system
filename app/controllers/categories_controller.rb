@@ -14,10 +14,10 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     if @category.save
       flash[:success] = "Category created!!"
+      redirect_to categories_path
     else
-      flash[:danger] = "Please input content"
+      render 'new'
     end
-    redirect_to categories_path
   end
 
   def edit
