@@ -40,7 +40,7 @@ class WordsController < ApplicationController
 
   def destroy
     Word.find(params[:id]).destroy
-    redirect_to root_url
+    redirect_to category_words_path
   end
 
   private

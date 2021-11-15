@@ -21,7 +21,7 @@
                                     <%= choice.choice if choice.correct %>  
                                 <% end %> </td>
                                 <td> <i class="fas fa-edit"></i> <%= link_to "Edit", edit_category_word_path(params[:category_id],word.id) %> </td>
-                                <td> <i class="fas fa-trash-alt"></i> <%= link_to "Delete", "category_word_path()",method: :delete,data: { confirm: "Are you sure?" }%> <i class="fas fa-poo fa-rotate-90"></i></td>
+                                <td> <i class="fas fa-trash-alt"></i> <%= link_to "Delete", category_word_path(params[:category_id],word.id),method: :delete,data: { confirm: "Are you sure?" }%> <i class="fas fa-poo fa-rotate-90"></i></td>
                             </tr>
                         <% end %>
                     </tbody>
