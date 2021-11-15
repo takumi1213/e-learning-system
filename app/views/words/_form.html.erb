@@ -5,7 +5,7 @@
                 <%= form_for(@word) do |f| %>
                     <p>Word</p>
                     <%= f.text_field :word, class: "form-control", placeholder: "word" %>
-                    <%= f.hidden_field :category_id ,value: params[:id] %>
+                    <%= f.hidden_field :category_id ,value: params[:category_id] %>
             </div>
             <div class="col-6">
                 <%= f.fields_for :choices do |s| %>

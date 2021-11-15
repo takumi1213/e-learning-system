@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
 
   resources :categories do
-    member do
-      resources :words
-    end
+    resources :words
   end
+
+  resources :words, only: :create
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

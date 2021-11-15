@@ -1,7 +1,7 @@
 class WordsController < ApplicationController
   
   def index
-    @word = Word.paginate(page: params[:page], per_page: 5 )
+    @words = Word.where(category_id: params[:category_id]).paginate(page: params[:page], per_page: 5 )
   end
 
   def show
