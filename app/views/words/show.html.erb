@@ -3,7 +3,7 @@
     <div class="col-12">
         <div class="container my-3">
             <h1 class="texr-center">Manege Words</h1>
-            <%= link_to 'Add Words', new_category_word_path(), class:"btn btn-success" %>
+            <%= link_to 'Add Words', new_word_path(), class:"btn btn-success" %>
             <%= will_paginate %>
               <table class="table table-striped table-hover">
                   <thead class="text-center">
@@ -16,12 +16,10 @@
                     <tbody class="text-center">
                         <% @words.each do |word| %>
                             <tr>
-                                <td> <%= word.word %> </td>
-                                <td> <% for choice in word.choices %>
-                                    <%= choice.choice if choice.correct %>  
-                                <% end %> </td>
-                                <td> <%= link_to "Edit", edit_category_word_path()%> </td>
-                                <td> <%= link_to "Delete", category_word_path(),method: :delete,data: { confirm: "Are you sure?" }%> </td>
+                                <td> <%= word.title %> </td>
+                                <td> <%= "Answer" %> </td>
+                                <td> <%= link_to "Edit", edit_word_path(category)%> </td>
+                                <td> <%= link_to "Delete", word_path(category),method: :delete,data: { confirm: "Are you sure?" }%> </td>
                             </tr>
                         <% end %>
                     </tbody>

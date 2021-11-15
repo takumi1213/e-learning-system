@@ -1,5 +1,23 @@
 <%= provide(:title,"Register Profile")%>
 <div class="col-6 mx-auto">
     <h1 class="text-center mt-4">Register Profile</h1>
-    <%= render 'form', btn_msg: "Submit"%>
+    <%= form_with(model: @user, local: true) do |f| %>
+        <div class="signup w-50 mx-auto">
+            <%= render 'shared/error_messages', object: f.object %>
+            <div class="mb-3">
+                <%= f.text_field :name, class: "form-control", placeholder: "Name"%>
+            </div>
+            <div class="mb-3">
+                <%= f.email_field :email, class: "form-control", placeholder: "Email"%>
+            </div>
+            <div class="mb-3">
+                <%= f.password_field :password, class: "form-control", placeholder: "Password"%>
+            </div>
+            <div class="mb-3">
+                <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Password Confirmation"%>
+            </div>
+                <%= f.hidden_field :admin ,value: false %>
+            <%= f.submit "submit", class: "btn btn-block btn-success"%>
+        </div>
+    <% end %>
 </div>
