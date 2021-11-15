@@ -31,7 +31,7 @@ class WordsController < ApplicationController
   def update
     @word = Word.find(params[:id])
     if @word.update(word_params)
-      redirect_to word_path(@word), notice: 'Successfully Updated'
+      redirect_to category_words_path(@word.category_id), notice: 'Successfully Updated'
     else
       render :edit
     end
