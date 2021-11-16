@@ -35,3 +35,34 @@
       description: description,
       )
   end
+
+
+  categories = Category.order(:created_at).take(3)
+
+  5.times do |n|
+    word = Faker::JapaneseMedia::OnePiece.character
+    choice1 = Faker::JapaneseMedia::OnePiece.island
+    choice2 = Faker::JapaneseMedia::OnePiece.island
+    choice3 = Faker::JapaneseMedia::OnePiece.island
+    
+    categories.each { |category| category.words.create!(
+      word: word,
+      :choices_attributes =>
+      {
+        0 =>{
+          choice: choice1,
+          correct: true
+        },
+        1 =>{
+          choice: choice2,
+          correct: false
+        },
+        2 =>{
+          choice: choice3,
+          correct: false
+        }
+      }
+    )
+  }
+  end
+
