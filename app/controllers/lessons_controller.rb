@@ -1,5 +1,14 @@
 class LessonsController < ApplicationController
   def index
-    @categories = Category.all.paginate(page: params[:page], per_page: 10)
+    if params[:filter] == "Learned"
+       @categories = current_user.lessons.where.not(lessons: {result: nil})
+    elsif params[:filter] == "Not Learned"
+      @categories = Category.left_outer_joins(:lessons)
+                          .where.not(id: current_user.categories
+                          .where.not(lessons: {result: nil}))
+    else
+      @categories = Category.all
+    end
+    @categories = Category.paginate(page: params[:page])
   end
 end
