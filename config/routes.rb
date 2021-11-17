@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :lessons, only: :index
   get 'sessions/new'
   get 'static_pages/home'
   get 'static_pages/about'

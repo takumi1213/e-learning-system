@@ -18,9 +18,11 @@
                             <tr>
                                 <td> <%= link_to "#{category.title}", category_words_path(category) %> </td>
                                 <td> <%= category.description %> </td>
-                                <td> <i class="far fa-plus-square"></i> <%= link_to "Add words", new_category_word_path(category) %> </td>
-                                <td> <i class="fas fa-edit"></i> <%= link_to "Edit", edit_category_path(category)%> </td>
-                                <td> <i class="fas fa-trash-alt"></i> <%= link_to "Delete", category_path(category),method: :delete,data: { confirm: "Are you sure?" }%> <i class="fas fa-poo fa-rotate-90"></i> </td>
+                                <% if current_user.admin %>
+                                    <td> <i class="far fa-plus-square"></i> <%= link_to "Add words", new_category_word_path(category) %> </td>
+                                    <td> <i class="fas fa-edit"></i> <%= link_to "Edit", edit_category_path(category)%> </td>
+                                    <td> <i class="fas fa-trash-alt"></i> <%= link_to "Delete", category_path(category),method: :delete,data: { confirm: "Are you sure?" }%> <i class="fas fa-poo fa-rotate-90"></i> </td>
+                                <% end %>
                             </tr>
                         <% end %>
                     </tbody>
