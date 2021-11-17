@@ -1,0 +1,28 @@
+<%= provide(:title,"Categories")%>
+
+<div class="row my-3">
+  <h1>Categories (<%= @categories.count %>)</h1>
+  <button class="btn btn-primary ml-auto">All</button>
+  <button class="btn btn-primary mx-3">Learned</button>
+  <button class="btn btn-primary">Not learned</button>
+</div>
+
+<div class="row">
+  <%= will_paginate(@categories) %>
+</div>
+
+  <div class="row my-3">
+    <% @categories.each do |category| %>  
+      <div class="col-sm-6 my-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Title : <%= category.title %></h5>
+            <p class="card-text">Description : <%= category.description %></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+<%= will_paginate(@categories) %>
