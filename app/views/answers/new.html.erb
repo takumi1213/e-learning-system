@@ -1,0 +1,22 @@
+<%= provide(:title,"Lessons #{@lesson.category.title} Word")%>
+
+
+<%= form_for(@answer) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  <%= @word.word %>
+    <div class="signup w-50 mx-auto">
+        <div class="mb-3">
+        <% @word.choices.each do |c|%>
+          <div class="row">
+            <%= f.radio_button :choice_id, c.id, class:"form-check-input"%>
+            <div class="form-check-label">
+              <%= c.choice %> 
+            </div>
+          </div>
+        <% end %>
+        <%= f.hidden_field :lesson_id ,value: @lesson.id %>
+        <%= f.hidden_field :word_id ,value: @word.id %>
+
+        <%= f.submit "Submit", class: "btn btn-block btn-success"%>
+    </div>
+<% end %>

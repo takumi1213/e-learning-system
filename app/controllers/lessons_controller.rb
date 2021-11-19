@@ -11,4 +11,17 @@ class LessonsController < ApplicationController
     end
     @categories = @categories.paginate(page: params[:page])
   end
+
+  def create
+    @category = Category.find_by_id(params[:category_id])
+    @lesson = @category.lessons.build(user: current_user)
+    if @category.words.any?
+      @lesson.save
+      redirect_to new_lesson_answer_url(@lesson)
+    else
+      flash[:danger] = "There are no words in this category yet"
+      redirect_to lessons_url
+    end
+  end
+  
 end
