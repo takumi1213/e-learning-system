@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :lessons, only: :index
+  get 'answers/new'
+  resources :lessons do
+    resources :answers
+  end
+  resources :answers, only: :create
+
   get 'sessions/new'
   get 'static_pages/home'
   get 'static_pages/about'
@@ -20,6 +25,5 @@ Rails.application.routes.draw do
 
   resources :words, only: [:create,:update] 
 
-  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

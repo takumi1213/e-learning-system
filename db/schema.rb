@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_16_131735) do
+ActiveRecord::Schema.define(version: 2021_11_18_113107) do
+
+  create_table "answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "lesson_id"
+    t.bigint "word_id"
+    t.bigint "choice_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["choice_id"], name: "index_answers_on_choice_id"
+    t.index ["lesson_id"], name: "index_answers_on_lesson_id"
+    t.index ["word_id"], name: "index_answers_on_word_id"
+  end
 
   create_table "categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
@@ -52,4 +63,7 @@ ActiveRecord::Schema.define(version: 2021_11_16_131735) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "answers", "choices"
+  add_foreign_key "answers", "lessons"
+  add_foreign_key "answers", "words"
 end
