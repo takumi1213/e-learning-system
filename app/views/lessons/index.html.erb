@@ -25,8 +25,11 @@
           <div class="card-body">
             <h5 class="card-title">Title : <%= category.title %></h5>
             <p class="card-text">Description : <%= category.description %></p>
-
-            <%= link_to "Start", lessons_path(category_id: category.id),method: :post,class: 'btn btn-primary float-right w-100' %>
+            <% if check_if_learned(category) == false %>
+              <%= link_to "Start", lessons_path(category_id: category.id),method: :post,class: 'btn btn-primary float-right w-100' %>
+            <% else %>
+                <%= link_to "Learned", lesson_path(current_user.lessons.find_by(category: category)),class: 'btn btn-info float-right w-100' %>
+            <% end %> 
           </div>
         </div>
       </div>

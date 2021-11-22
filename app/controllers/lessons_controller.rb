@@ -24,4 +24,7 @@ class LessonsController < ApplicationController
     end
   end
   
+  def show
+    @answers = Answer.where(lesson_id:params[:id])
+  end
 end

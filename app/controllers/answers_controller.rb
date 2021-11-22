@@ -24,7 +24,7 @@ class AnswersController < ApplicationController
 
     if answer_count(@lesson) == total_words(@lesson.category_id)
       if @lesson.update_attribute(:result, "Learned")
-        redirect_to _path
+        redirect_to lesson_path
       end
     end
 
@@ -36,6 +36,11 @@ class AnswersController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
   end
+
+  def show
+    
+  end
+
 
   private
   def ans_params
