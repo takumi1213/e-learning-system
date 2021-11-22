@@ -1,0 +1,39 @@
+<%= provide(:title,"Result page")%>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Word</th>
+            <th scope="col">Your Answer</th>
+            <th scope="col">Correct Answer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @answers.each do |answer|%>
+            <tr>
+                <td> <%= answer.word.word %></td>
+                <td>
+                    <% answer.word.choices.each do |choice| %>
+                        <% if choice.correct %>
+                            <%= choice.choice %>
+                        <% end %>
+                    <% end %>
+                </td>
+                <td>
+                    <%= answer.choice.choice %>
+                </td>
+                <td>
+                    <% answer.word.choices.each do |correct| %>
+                        <% if answer.choice.correct == correct.correct %>
+                            <i class="fa fa-check"></i>
+                            <% break %>
+                        <% else %>
+                            <i class="fa fa-times"></i>
+                            <% break %>
+                        <% end %>
+                    <% end %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
