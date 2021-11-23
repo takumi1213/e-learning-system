@@ -10,10 +10,12 @@
                 <%= gravatar_for @user, size:52 %>
                 <h5><%=@user.name %></h5>
                 <p><%= @user.email%></p>
-                <% if @user == current_user %>
                 <div class="card-footer">
+                    <section>
+                        <%= render 'follow_form' if logged_in? %>
+                        <%= render 'shared/stats' %>
+                    </section>
                 </div>
-                <% end%>
             </div>
         </div>
     </div>
