@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   get 'static_pages/contact'
 
   root  'static_pages#home'
-  resources :users
+  
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+
   get '/signup', to: 'users#new' 
 
   resources :sessions, only: :create
@@ -24,6 +30,9 @@ Rails.application.routes.draw do
   end
 
   resources :words, only: [:create,:update] 
+
+  #For follow and unfollow
+  resources :relationships, only: [:create, :destroy]
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
