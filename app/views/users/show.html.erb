@@ -28,7 +28,7 @@
                 <% if @activities.any? %>
                     <% @activities.each do |activity| %>
                         <li class="list-group-item">
-                            <p class="float-right"><%= distance_of_time_in_words(Time.now, activity.actionable.created_at, include_seconds: true) %>ago</p>
+                            <p class="float-right"><%= distance_of_time_in_words(Time.now, activity.actionable.created_at, include_seconds: true) %> ago</p>
                             <% if activity.actionable.instance_of?(Relationship) %>
                                 <p><%= @user.name %> followed <%= link_to activity.actionable.followed.name, activity.actionable.followed,class: "badge badge-info" %></p>
                             <% else %>
