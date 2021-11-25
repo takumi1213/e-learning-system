@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @choices = @user.choices
     @words = @user.words
+    @activities = Activity.where(user_id: @user)
   end
 
   def new
