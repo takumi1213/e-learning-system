@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'activities/index'
   get 'answers/new'
   resources :lessons do
     resources :answers

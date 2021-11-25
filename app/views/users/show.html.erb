@@ -25,7 +25,21 @@
                 Activity Feeds
             </div>
             <div class="card-body">
-                <h4 class="text-center"> No posts found</h4>
+                <% if @activities.any? %>
+                    <% @activities.each do |activity| %>
+                        <li class="list-group-item">
+                            <p class="float-right"><%= distance_of_time_in_words(Time.now, activity.actionable.created_at, include_seconds: true) %>ago</p>
+                            <% if activity.actionable.instance_of?(Relationship) %>
+                                <p><%= @user.name %> followed <%= link_to activity.actionable.followed.name, activity.actionable.followed,class: "badge badge-info" %></p>
+                            <% else %>
+                                <p><%= "#{@user.name}learned #{pluralize( activity.actionable.answers.count, "words")}in"%>
+                                <span class= "badge badge-info"><%= activity.actionable.category.title %></span></p>
+                            <% end %>
+                        </li>
+                    <% end %>
+                <% else %>
+                    <h4 class="text-center"> No posts found</h4>
+                <% end %>
             </div>
         </div>
     </div>

@@ -17,6 +17,7 @@ class LessonsController < ApplicationController
     @lesson = @category.lessons.build(user: current_user)
     if @category.words.any?
       @lesson.save
+      @action = Activity.create(actionable: Lesson.last, user_id: current_user.id)
       redirect_to new_lesson_answer_url(@lesson)
     else
       flash[:danger] = "There are no words in this category yet"
