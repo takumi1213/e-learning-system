@@ -1,12 +1,57 @@
 <% provide(:title,"Home")%>
-
-
-
-<div class="jumbotron">
-    <h1 class="display-4">e-learning system</h1>
-    <p class="lead">Welcome to e-learning system</p>
-    <hr class="my-4">
-    <p>Let's learning !!</p>
-    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+<% if logged_in?%>
+    <div class="row pt-5">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header">
+                User Infomation
+            </div>
+            
+            <div class="card-body text-center">
+                <%= gravatar_for @user, size:52 %>
+                <h5><%=@user.name %></h5>
+                <p><%= @user.email%></p>
+                <div class="card-footer">
+                    <section>
+                        <%= render 'users/follow_form' if logged_in? %><br>
+                        <%= render 'shared/stats' %>
+                        <%= link_to "Category", lessons_path, class: "text-white" %>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header">
+                Activity Feeds
+            </div>
+            <div class="card-body">
+                <% if @activities.any? %>
+                    <% @activities.each do |activity| %>
+                        <li class="list-group-item">
+                            <p class="float-right"><%= distance_of_time_in_words(Time.now, activity.actionable.created_at, include_seconds: true) %> ago</p>
+                            <% if activity.actionable.instance_of?(Relationship) %>
+                                <p><%= @user.name %> followed <%= link_to activity.actionable.followed.name, activity.actionable.followed,class: "badge badge-info" %></p>
+                            <% else %>
+                                <p><%= "#{@user.name} learned #{pluralize(activity.actionable.answers.count, "words")} in"%>
+                                <span><%= link_to activity.actionable.category.title, lesson_path(activity.actionable), class: "badge badge-info"%></span></p>
+                            <% end %>
+                        </li>
+                    <% end %>
+                <% else %>
+                    <h4 class="text-center"> No posts found</h4>
+                <% end %>
+            </div>
+        </div>
+    </div>
 </div>
-
+<% else %>
+    <div class="jumbotron">
+        <h1 class="display-4">e-learning system</h1>
+        <p class="lead">Welcome to e-learning system</p>
+        <hr class="my-4">
+        <p>Let's learning !!</p>
+        <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </div>
+<% end %>

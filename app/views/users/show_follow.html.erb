@@ -22,11 +22,13 @@
         <h3><%= @title%></h3>
         <% if @users.any?%>
             <%@users.each do |user|%>
-                <ul class="user_follow">
+                <ul class="user_follow list-unstyled">
                     <%= render user%>
                 </ul>
             <% end%>
-            <%= will_paginate @users%>  
+            <div class="d-flex justify-content-center">
+                <%= will_paginate @users%>  
+            </div>
         <%end%>
     </div>
 </div>
