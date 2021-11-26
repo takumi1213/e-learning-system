@@ -12,7 +12,16 @@
                 <p><%= @user.email%></p>
                 <div class="card-footer">
                     <section>
-                        <%= render 'follow_form' if logged_in? %>
+                        <% if logged_in? %>
+                            <% @user.lessons.each do |lesson| %>
+                                <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center"><%= counter = counter=+lesson.category.words.count %></h5>
+                                        <p class="card-text text-center">Total Words Learned</p>
+                                    </div>
+                                </div>
+                            <% end %>
+                        <% end %>
                         <%= render 'shared/stats' %>
                     </section>
                 </div>
