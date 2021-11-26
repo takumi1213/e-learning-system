@@ -7,7 +7,7 @@
       <label class="btn btn-primary <%= current_page?("all") %> " >
         <%= link_to "All" , lessons_path ,class: "text-white"%>
       </label>
-      <label class="btn btn-primary <%= current_page?("Learned") %> mx-3">
+      <label class="btn btn-primary <%= current_page?("Learned") %> ">
         <%= link_to "Learned" , lessons_path(filter: "Learned") ,class: "text-white" %>
       </label>
       <label class="btn btn-primary <%= current_page?("Not Learned") %> ">
@@ -17,7 +17,7 @@
 </div>
 </div>
 
-<div class="row">
+<div class="row d-flex justify-content-center">
   <%= will_paginate(@categories) %>
 </div>
 
